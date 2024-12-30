@@ -1,11 +1,11 @@
 package dev.gathi.services
 
-import dev.gathi.utils.ThreadUtils.randomThreadWait
+import dev.gathi.utils.ThreadUtils.randomWait
 
-class PricingService {
+class CoroutinePricingService {
 
-    fun getPrice(sku: Int): Double {
-        Thread.currentThread().randomThreadWait("Pricing Service")
+    suspend fun getPrice(sku: Int): Double {
+        randomWait("Pricing Service")
         return when (sku) {
             123 -> 10.0
             456 -> 20.0

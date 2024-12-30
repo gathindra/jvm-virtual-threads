@@ -1,11 +1,11 @@
 package dev.gathi.services
 
-import dev.gathi.utils.ThreadUtils.randomWait
+import dev.gathi.utils.ThreadUtils.randomThreadWait
 
 class ProductService {
 
     companion object {
-        private val products: Map<Int, Product>
+        val products: Map<Int, Product>
             get() =  mapOf(
                 123 to Product(123, "123", "Product 1", 10.0),
                 456 to Product(456, "456", "Product 2", 20.0),
@@ -14,7 +14,7 @@ class ProductService {
     }
 
     fun getProduct(sku: Int): Product {
-        Thread.currentThread().randomWait("Product Service")
+        Thread.currentThread().randomThreadWait("Product Service")
         return products[sku] ?: throw IllegalArgumentException("Product not found")
     }
 }
