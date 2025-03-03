@@ -5,21 +5,21 @@ import java.lang.Thread.sleep
 
 object ThreadUtils {
 
-    fun Thread.randomThreadWait(task: String) {
+    fun Thread.randomThreadWait(task: String, waitTime: Long? = null) {
         println("Executing $task in ${this.name}")
-        val sleepTime = getSleepTime(task)
+        val sleepTime = waitTime ?: getSleepTime(task)
+        println("Sleeping $task for $sleepTime ms")
         sleep(sleepTime)
-        println("Execution Completed $task in ${Thread.currentThread()}")
+        println("Waiting for result Completed $task in ${Thread.currentThread()}")
     }
 
-    suspend fun randomWait(task: String) {
+    suspend fun randomWait(task: String, waitTime: Long? = null) {
         println("Executing $task in ${Thread.currentThread()}")
-        val sleepTime = getSleepTime(task)
+        val sleepTime = waitTime ?: getSleepTime(task)
+        println("Sleeping $task for $sleepTime ms")
         delay(sleepTime)
-        println("Execution Completed $task in ${Thread.currentThread()}")
+        println("Waiting for result Completed $task in ${Thread.currentThread()}")
     }
 
-    private fun getSleepTime(task: String): Long =
-        (1000..5000).random().toLong()
-            .also { println("Sleeping $task for $it ms") }
+    private fun getSleepTime(task: String): Long = (500..2000).random().toLong()
 }
