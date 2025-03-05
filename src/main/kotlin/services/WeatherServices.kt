@@ -45,11 +45,9 @@ class WeatherServiceOne: WeatherService {
 
     override suspend fun getWeatherAsync(city: String): WeatherResult {
 
-
         return try {
-            WeatherResult.Success(WeatherHandler.handle(city, 1)).also {
-                randomWait("Weather Service One")
-            }
+            randomWait("Weather Service One")
+            WeatherResult.Success(WeatherHandler.handle(city, 1))
         } catch (e: Exception) {
             WeatherResult.Failure(e)
         }
@@ -66,9 +64,8 @@ class WeatherServiceTwo: WeatherService {
     override suspend fun getWeatherAsync(city: String): WeatherResult {
 
         return try {
-            WeatherResult.Success(WeatherHandler.handle(city, 1)).also {
-                randomWait("Weather Service Two", 100)
-            }
+            randomWait("Weather Service Two", 100)
+            WeatherResult.Success(WeatherHandler.handle(city, 2))
         }
         catch (e: Exception) {
             WeatherResult.Failure(e)
@@ -86,9 +83,8 @@ class WeatherServiceThree: WeatherService {
     override suspend fun getWeatherAsync(city: String): WeatherResult {
 
         return try {
-            WeatherResult.Success(WeatherHandler.handle(city, 1)).also {
-                randomWait("Weather Service Three", 200)
-            }
+            randomWait("Weather Service Three", 200)
+            WeatherResult.Success(WeatherHandler.handle(city, 3))
         }
         catch (e: Exception) {
             WeatherResult.Failure(e)
