@@ -12,7 +12,7 @@ class ProductDetailsTests(
     private val productDetails: ProductDetails = ProductDetails()
 
     @Test
-    fun `should return product details`() {
+    fun `should return a correct product details`() {
         val product = productDetails.run(123)
         assertSoftly(product) {
             sku shouldBe 123
@@ -23,7 +23,7 @@ class ProductDetailsTests(
     }
 
     @Test
-    fun `should throw exception when product not found`() {
+    fun `should throw an exception when a product is not found`() {
        shouldThrow<RuntimeException> {
            productDetails.run(999)
        }

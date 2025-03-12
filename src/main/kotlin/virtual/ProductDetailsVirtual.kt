@@ -31,7 +31,9 @@ class ProductDetailsVirtual(
                 scope.join().throwIfFailed()
                 val product = productTask.get()
                 val price = priceTask.get()
-                return product.copy(price = price)
+                val copy = product.copy(price = price)
+                println("Product Details: $copy, Price: $price")
+                return copy
 
             }
         } catch (e: Exception) {
